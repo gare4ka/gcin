@@ -1,0 +1,76 @@
+goog.provide('ota.i18n.lng..base');
+
+
+/** @param {Object} options */
+ota.i18n.lng..base.serverError = function(options) {
+  /**  @desc Server error */
+  var MSG_SERVERERROR_612 = goog.getMsg('Ошибка сервера', options);
+  return MSG_SERVERERROR_612;
+};
+
+/** @param {Object} options */
+ota.i18n.lng..base.test = function(options) {
+  /**  @desc Тестовое описание */
+  var MSG_TEST_44 = goog.getMsg('Тест', options);
+  return MSG_TEST_44;
+};
+
+/** @param {Object} options */
+ota.i18n.lng..base.helloUser = function(options) {
+  /**  @desc Приветствуем юзера */
+  var MSG_HELLOUSER_28 = goog.getMsg('Привет, {$username}', options);
+  return MSG_HELLOUSER_28;
+};
+
+/** @param {Object} options */
+ota.i18n.lng..base.quote = function(options) {
+  /**  @desc quote */
+  var MSG_QUOTE_934 = goog.getMsg(
+    '"Не тот поэт, кто рифмы плесть умеет."' +
+    '  А. С. Пушкин',
+    options
+);
+  return MSG_QUOTE_934;
+};
+
+/** @param {Object} options */
+ota.i18n.lng..base.title = function(options) {
+  /**  @desc Подзаголовок серпа */
+  var MSG_TITLE_229 = goog.getMsg(
+    '{GUESTS, select,' +
+    '    all {' +
+    '      for {NUM_ADULTS} {NUM_ADULTS, plural,' +
+    '        one {adult}' +
+    '        other {adults}' +
+    '      } and {NUM_CHILDREN} {NUM_CHILDREN, plural' +
+    '        one {child}' +
+    '        other {children}' +
+    '      }' +
+    '    }' +
+    '    adults {' +
+    '      for {NUM_ADULTS} {NUM_ADULTS, plural,' +
+    '        one {adult}' +
+    '        other {adults}' +
+    '      }' +
+    '    }' +
+    '    children {' +
+    '      для {NUM_CHILDREN} {NUM_CHILDREN, plural,' +
+    '        one {child}' +
+    '        other {children}' +
+    '      }' +
+    '    }' +
+    '    other {}' +
+    '  }' +
+    '  {IS_DATELESS, select,' +
+    '    no {' +
+    '      from {NUM_FROM_DATE} {IS_SAME_MONTH, select,' +
+    '        no {{NUM_FROM_MONTH}}' +
+    '        other {}' +
+    '      }  to {NUM_TO_DATE} {NUM_TO_MONTH}' +
+    '    }' +
+    '    other {}' +
+    '  }',
+    options
+);
+  return MSG_TITLE_229;
+};

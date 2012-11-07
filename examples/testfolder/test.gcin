@@ -1,0 +1,56 @@
+<% @source ru %>
+<% @namespace test %>
+
+<% @msg serverError "Server error" {
+  Ошибка сервера
+} %>
+
+<% @msg test "noun" "Тестовое описание" {
+  Тест
+} %>
+
+<% @msg helloUser "Приветствуем юзера" {
+  Привет, {$username}
+} %>
+
+<% @msg quote {
+  "Не тот поэт, кто рифмы плесть умеет."
+  А. С. Пушкин
+} %>
+
+<% @msg title "Подзаголовок серпа" {
+  {GUESTS, select,
+    all {
+      for {NUM_ADULTS} {NUM_ADULTS, plural,
+        one {adult}
+        other {adults}
+      } and {NUM_CHILDREN} {NUM_CHILDREN, plural
+        one {child}
+        other {children}
+      }
+    }
+    adults {
+      for {NUM_ADULTS} {NUM_ADULTS, plural,
+        one {adult}
+        other {adults}
+      }
+    }
+    children {
+      для {NUM_CHILDREN} {NUM_CHILDREN, plural,
+        one {child}
+        other {children}
+      }
+    }
+    other {}
+  }
+  {IS_DATELESS, select,
+    no {
+      from {NUM_FROM_DATE} {IS_SAME_MONTH, select,
+        no {{NUM_FROM_MONTH}}
+        other {}
+      }  to {NUM_TO_DATE} {NUM_TO_MONTH}
+    }
+    other {}
+  }
+} %>
+

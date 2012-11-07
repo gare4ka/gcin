@@ -1,0 +1,102 @@
+#!/usr/bin/env node
+
+var argv = require('optimist')
+  .usage('Creates js files from gsin files.\nUsage: $0 -n [nsPrefix] -d [gcinDir] -p [lang:poFile] -o [outputDir]')
+  .boolean('self')
+  .alias('self', 's')
+  .describe('s', 'Create js in source language')
+  .demand('dir')
+  .alias('dir', 'd')
+  .describe('dir', 'Directory of gcin files')
+  .demand('po')
+  .alias('po', 'p')
+  .describe('po', 'Language : Po file')
+  .demand('output')
+  .alias('output', 'o')
+  .describe('output', 'Path to directory')
+  // .demand('lang')
+  // .alias('lang', 'l')
+  // .describe('lang', 'Output language')
+  .demand('nsprefix')
+  .alias('nsprefix', 'n')
+  .describe('nsprefix', 'Namespace prefix')
+  .argv;
+
+var fs = require('fs');
+var readFilesByExt = require('../fs').readFilesByExt;
+var mkdir = require('../fs').mkdir;
+var gcin = require('../gcin');
+var po = require('../po');
+var js = require('../js');
+var path = require('path');
+var mkdirp = require('mkdirp');
+
+var argvPoTemp = argv.po instanceof Array ? argv.po : [argv.po];
+var argvPo = [];
+argvPoTemp.forEach(function(arg) {
+  if (arg.indexOf(':') == -1) {
+    throw Error("Bad po param format. Need lang:path");
+  }
+  var tmp = arg.split(':');
+  argvPo.push({
+    lang: tmp[0],
+    name: tmp[1]
+  })
+});
+
+try{
+  readFilesByExt(argv.dir, 'gcin', function(files) {
+    var createLang = function(lang) {
+      files.forEach(function(file) {
+        var jsData = js.create(file.doc, argv.nsprefix, lang);
+        var name = path.resolve(argv.output, 'lang', lang || file.doc.source, path.relative(argv.dir, file.name));
+        var dir = path.dirname(name);
+
+        mkdirp(dir, function(err) {
+          if (err) throw err;
+          fs.writeFile(name + '.js', jsData, function (err) {
+            if (err) throw err;
+            process.stdout.write('Saved: ' + name + '\n');
+          });
+        });
+      });
+    };
+
+    var langs = [];
+    argvPo.forEach(function(arg) {
+      var data = new String(fs.readFileSync(arg.name));
+      var doc = po.parse(data);
+      var map = po.getMap(doc);
+
+      files.forEach(function(file) {
+        file.doc = gcin.parse(file.data);
+        gcin.extendTranslation(file.doc, map);
+      });
+
+      createLang(arg.lang);
+      langs.push(arg.lang);
+    });
+
+    if (argv.self && files.length > 0) {
+      createLang();
+      langs.push(files[0].doc.source);
+    }
+
+    files.forEach(function(file) {
+      var jsData = js.createUnion(file.doc, argv.nsprefix, langs);
+      var name = path.resolve(argv.output, path.relative(argv.dir, file.name));
+      var dir = path.dirname(name);
+
+      mkdirp(dir, function(err) {
+        if (err) throw err;
+        fs.writeFile(name + '.js', jsData, function (err) {
+          if (err) throw err;
+          process.stdout.write('Saved: ' + name + '\n');
+        });
+      });
+    });
+
+  });
+} catch(e) {
+  process.stderr.write('Exception: ' + e.message + '\n');
+}
