@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var argv = require('optimist')
-  .usage('Creates js files from gsin files.\nUsage: $0 -n [nsPrefix] -d [gcinDir] -o [outputDir] [-p [lang:poFile]]')
+  .usage('Creates js files from gcin files.\nUsage: $0 -n [nsPrefix] -d [gcinDir] -o [outputDir] [-p [lang:poFile]]')
   .boolean('self')
   .alias('self', 's')
   .describe('s', 'Create js in source language')

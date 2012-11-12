@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var argv = require('optimist')
-  .usage('Creates po file from gsin files.\nUsage: $0 -d [gcinDir] -o [poFile]')
+  .usage('Creates po file from gcin files.\nUsage: $0 -d [gcinDir] -o [poFile]')
   .demand('dir')
   .alias('dir', 'd')
   .describe('dir', 'Directory of gcin files')
