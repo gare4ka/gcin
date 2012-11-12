@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 var argv = require('optimist')
-  .usage('Creates js files from gsin files.\nUsage: $0 -n [nsPrefix] -d [gcinDir] -p [lang:poFile] -o [outputDir]')
+  .usage('Creates js files from gsin files.\nUsage: $0 -n [nsPrefix] -d [gcinDir] -o [outputDir] [-p [lang:poFile]]')
   .boolean('self')
   .alias('self', 's')
   .describe('s', 'Create js in source language')
   .demand('dir')
   .alias('dir', 'd')
   .describe('dir', 'Directory of gcin files')
-  .demand('po')
   .alias('po', 'p')
   .describe('po', 'Language : Po file')
   .demand('output')
@@ -34,6 +33,9 @@ var mkdirp = require('mkdirp');
 var argvPoTemp = argv.po instanceof Array ? argv.po : [argv.po];
 var argvPo = [];
 argvPoTemp.forEach(function(arg) {
+  if (arg === undefined) {
+    return;
+  }
   if (arg.indexOf(':') == -1) {
     throw Error("Bad po param format. Need lang:path");
   }
@@ -44,23 +46,69 @@ argvPoTemp.forEach(function(arg) {
   })
 });
 
+var printResult = function(saved, opt_prefix) {
+  var ret = '';
+  if (opt_prefix) {
+    ret += opt_prefix + ': saved ';
+  } else {
+    ret += 'Saved ';
+  }
+  if (saved.success) {
+    ret += saved.success + (saved.success != 1 ? ' files' : ' file');
+  }
+
+  if (saved.fail) {
+    if (saved.success) {
+      ret += ', ';
+    }
+    ret += 'failed ' + saved.fail + (saved.fail != 1 ? ' files' : ' file');
+  }
+
+  ret += '\n';
+
+  process.stdout.write(ret);
+}
+
+var saveFile = function(name, data, callback) {
+  var dir = path.dirname(name);
+  mkdirp(dir, function(err) {
+    if (err) {
+      return callback(err);
+    }
+    fs.writeFile(name + '.js', data, function (err) {
+      return callback(err);
+    });
+  });
+}
+
 try{
   readFilesByExt(argv.dir, 'gcin', function(files) {
     var createLang = function(lang) {
-      files.forEach(function(file) {
-        var jsData = js.create(file.doc, argv.nsprefix, lang);
-        var name = path.resolve(argv.output, 'lang', lang || file.doc.source, path.relative(argv.dir, file.name));
-        var dir = path.dirname(name);
+      var saved = {
+        fail: 0,
+        success: 0
+      };
 
-        mkdirp(dir, function(err) {
-          if (err) throw err;
-          fs.writeFile(name + '.js', jsData, function (err) {
-            if (err) throw err;
-            process.stdout.write('Saved: ' + name + '\n');
-          });
+      files.forEach(function(file, pos) {
+        var jsData = js.create(file.doc, argv.nsprefix, lang, pos);
+        var name = path.resolve(argv.output, 'lang', lang || file.doc.source, path.relative(argv.dir, file.name));
+        saveFile(name, jsData, function(err) {
+          if (err) {
+            saved.fail++;
+          } else {
+            saved.success++;
+          }
+
+          if(saved.fail + saved.success == files.length) {
+            printResult(saved, "Language '" + (lang || file.doc.source) + "'");
+          }
         });
       });
     };
+
+    files.forEach(function(file) {
+      file.doc = gcin.parse(file.data);
+    });
 
     var langs = [];
     argvPo.forEach(function(arg) {
@@ -69,7 +117,6 @@ try{
       var map = po.getMap(doc);
 
       files.forEach(function(file) {
-        file.doc = gcin.parse(file.data);
         gcin.extendTranslation(file.doc, map);
       });
 
@@ -82,17 +129,25 @@ try{
       langs.push(files[0].doc.source);
     }
 
+    var saved = {
+      fail: 0,
+      success: 0
+    };
+
     files.forEach(function(file) {
       var jsData = js.createUnion(file.doc, argv.nsprefix, langs);
       var name = path.resolve(argv.output, path.relative(argv.dir, file.name));
-      var dir = path.dirname(name);
 
-      mkdirp(dir, function(err) {
-        if (err) throw err;
-        fs.writeFile(name + '.js', jsData, function (err) {
-          if (err) throw err;
-          process.stdout.write('Saved: ' + name + '\n');
-        });
+      saveFile(name, jsData, function(err) {
+        if (err) {
+          saved.fail++;
+        } else {
+          saved.success++;
+        }
+
+        if(saved.fail + saved.success == files.length) {
+          printResult(saved, "Union");
+        }
       });
     });
 

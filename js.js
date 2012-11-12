@@ -1,7 +1,7 @@
 var XRegExp = require('xregexp').XRegExp;
 var messageFormat = require('./messageformat');
 
-var create = function(doc, nsPrefix, lang) {
+var create = function(doc, nsPrefix, lang, id) {
   var ret = '';
 
   var ns = _getLngNs(nsPrefix, lang, doc);
@@ -10,8 +10,9 @@ var create = function(doc, nsPrefix, lang) {
   ret += "// usually there is no reason to edit it manually\n\n";
   ret += "goog.provide('" + ns + "');\n";
   ret += "\n";
-  doc.msgs.forEach(function(msg) {
-    var msgName = "MSG_" + msg.id.toUpperCase() + "_" + Math.round(Math.random() * 999).toString(32).toUpperCase();
+
+  doc.msgs.forEach(function(msg, pos) {
+    var msgName = "MSG_" + msg.id.toUpperCase() + "_" + id + "_" + pos;
 
     // if lang is not defined create js with sourse language
     var translation = lang ? msg.translation : msg.body;
@@ -21,10 +22,15 @@ var create = function(doc, nsPrefix, lang) {
       var mf = messageFormat(translation.replace(/\{\$(.+?)\}/g, 'REPLACEMENT'), lang || doc.source);
     }
 
-    var properties = [];
+    var props = {};
     XRegExp.forEach(translation, /\{\$(.+?)\}/, function (match, i) {
-      properties.push(match[1]);
+      props[match[1]] = true;
     });
+
+    var properties = [];
+    for (var name in props) {
+      properties.push(name);
+    }
 
     ret += "\n";
     if (properties.length > 0) {
@@ -37,8 +43,11 @@ var create = function(doc, nsPrefix, lang) {
     ret += "  /**  @desc " + (msg.desc || msg.id) + " */\n";
     ret += "  var " + msgName + " = goog.getMsg(";
 
-    if (translation.indexOf('\n') != -1) {
-      ret += "\n    '" + translation.replace(/'/g, "\\'").replace(/\n/g, "' +\n    '") + "',\n    options\n";
+    var multiline = translation.indexOf('\n') != -1;
+    var spaces = '';
+    if (multiline) {
+      spaces += '  ';
+      ret += "\n" + spaces + "  '" + translation.replace(/'/g, "\\'").replace(/\n/g, "' +\n" + spaces + "  '") + "'\n";
     } else {
       ret += "'" + translation.replace(/'/g, "\\'") + "'";
     }
@@ -49,16 +58,22 @@ var create = function(doc, nsPrefix, lang) {
         if (pos > 0) {
           ret += ",\n";
         }
-        ret += "  '" + prop.replace(/'/g, "\\'") + "': options";
+        ret += spaces + "    '" + prop.replace(/'/g, "\\'") + "': options";
         if ((/^[_a-zA-Z][_a-zA-Z0-9]*$/).test(prop)) {
           ret += '.' + prop;
         } else {
           ret += "['" + prop.replace(/'/g, "\\'") + "']";
         }
       });
-      ret += "\n}";
+      ret += "\n" + spaces + "  }";
     }
-    ret += ");\n";
+
+    if (multiline) {
+      ret += spaces + ");\n";
+    } else {
+      ret += ");\n";
+    }
+
     ret += "  return " + msgName + ";\n";
     ret += "};\n";
   });
