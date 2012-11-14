@@ -18,8 +18,10 @@ var create = function(doc, nsPrefix, lang, id) {
     var translation = lang ? msg.translation : msg.body;
 
     if (msg.type == 'msgf') {
-      translation = translation.replace(/\<%\s*@space\s*%\>/g, ' ').replace(/\n\s*/g, '');
+      translation = translation.replace(/\n\s*/g, '').replace(/\<%\s*@space\s*%\>/g, ' ');
       var mf = messageFormat(translation.replace(/\{\$(.+?)\}/g, 'REPLACEMENT'), lang || doc.source);
+    } else {
+      translation.replace(/\<%\s*@space\s*%\>/g, ' ');
     }
 
     var props = {};
