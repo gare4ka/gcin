@@ -24,7 +24,7 @@ var readFiles = function(files, callback) {
 };
 
 var getFilenamesByExt = function(dir, ext, callback) {
-  var cmd = 'find -E ' + dir + ' -regex .*\\.' + ext;
+  var cmd = 'find ' + dir + ' -regex ".*\\.' + ext + '"';
   exec(cmd, function(err, stdout, stderr) {
     if (err !== null) {
      throw err;

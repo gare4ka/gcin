@@ -21,7 +21,7 @@ var create = function(docs) {
         ret += '#. ' + msg.mean + '\n';
       }
 
-      ret += 'msgctxt "' + (doc.id ? doc.id + ' ' : '') + msg.id + '"\n';
+      ret += 'msgctxt "' + (msg.type == 'msgf' ? 'HAS FORMATTER, ' : '') + (doc.id ? doc.id + ' ' : '') + msg.id + '"\n';
       if (msg.body.indexOf('\n') != -1) {
         ret += 'msgid ""\n"' + msg.body.replace(/"/g, '\\"').replace(/\n/g, '\\n"\n"') + '"\n';
       } else {
