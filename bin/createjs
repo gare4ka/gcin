@@ -10,6 +10,8 @@ var argv = require('optimist')
   .describe('dir', 'Directory of gcin files')
   .alias('po', 'p')
   .describe('po', 'Language : Po file')
+  .alias('notranslabel', 'l')
+  .describe('notranslabel', 'String for tokens without translation')
   .demand('output')
   .alias('output', 'o')
   .describe('output', 'Path to directory')
@@ -29,6 +31,8 @@ var po = require('../po');
 var js = require('../js');
 var path = require('path');
 var mkdirp = require('mkdirp');
+
+var noTransLabel = argv.l || undefined;
 
 var argvPoTemp = argv.po instanceof Array ? argv.po : [argv.po];
 var argvPo = [];
@@ -117,7 +121,7 @@ try{
       var map = po.getMap(doc);
 
       files.forEach(function(file) {
-        gcin.extendTranslation(file.doc, map);
+        gcin.extendTranslation(file.doc, map, noTransLabel);
       });
 
       createLang(arg.lang);

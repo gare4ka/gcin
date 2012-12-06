@@ -78,7 +78,7 @@ var extendTranslation = function(doc, poMap, opt_noTransLabel) {
 
   doc.msgs.forEach(function(msg) {
     if (!msg.translation) {
-      msg.translation = opt_noTransLabel || '[ NO TRANSLATION]';
+      msg.translation = opt_noTransLabel ? opt_noTransLabel : msg.body;
       process.stdout.write('WARNING! Message ' + msg.id + ' (' + doc.ns + ') has no translation.\n');
     }
   });
