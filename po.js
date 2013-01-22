@@ -37,7 +37,7 @@ var create = function(docs) {
 var parse = function(data) {
   var _getMultiStrParam = function(param) {
     return '' +
-      '(?!\\\\)"' +
+      '(?!\\\\)(""\\n)?"' +
         '(?<' + param + '>.*?((?!\\\\)"\\n(?!\\\\)".+?)*)' +
       '(?!\\\\)"';
   };
@@ -58,7 +58,7 @@ var parse = function(data) {
     var msg = {
       id: _formatMultiLineStr(match.id),
       // gcinid: _formatMultiLineStr(match.gcinid),
-      ctx: _formatMultiLineStr(match.ctx),
+      ctx: (_formatMultiLineStr(match.ctx) || '').replace(/^HAS FORMATTER, /, ''),
       str: _formatMultiLineStr(match.str)
     };
 
