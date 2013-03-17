@@ -42,25 +42,30 @@ var parse = function(data) {
       '(?!\\\\)"';
   };
 
-  var MSG_REG_EXP = '(#.+?\\n)*' +
-                    // '(#: GCINID:\\s*(?<gcinid>.+)\\s*\\n)*' +
-                    '(#.+?\\n)*' +
+  var MSG_REG_EXP = '(?<comment>(#.+?\\n)*?)' +
                     '(msgctxt ' + _getMultiStrParam('ctx') + '\\n)?' +
                     'msgid ' + _getMultiStrParam('id') + '\\n' +
                     'msgstr ' + _getMultiStrParam('str') + '\\n';
+
+  var FUZZY_REG_EXP = new XRegExp(/(^|\n)#, fuzzy(\n|$)/);
 
   var doc = {
     msgs: []
   };
 
   XRegExp.forEach(data, new XRegExp(MSG_REG_EXP, 'm'), function(match, i) {
-
     var msg = {
       id: _formatMultiLineStr(match.id),
       // gcinid: _formatMultiLineStr(match.gcinid),
       ctx: (_formatMultiLineStr(match.ctx) || '').replace(/^HAS FORMATTER, /, ''),
       str: _formatMultiLineStr(match.str)
     };
+
+    var fuzzy = match.comment && (FUZZY_REG_EXP.test(match.comment));
+    if (fuzzy) {
+      process.stdout.write('Skipped (fuzzy): ' + msg.id + '\n');
+      return;
+    }
 
     doc.msgs.push(msg);
   }, this);
