@@ -12,7 +12,7 @@ var create = function(doc, nsPrefix, lang, id) {
   ret += "\n";
 
   doc.msgs.forEach(function(msg, pos) {
-    var msgName = "MSG_" + msg.id.toUpperCase() + "_" + id + "_" + pos;
+    var msgName = ["MSG", (lang || 'self').toUpperCase(), msg.id.toUpperCase(), id, pos].join('_');
 
     // if lang is not defined create js with sourse language
     var translation = lang ? msg.translation : msg.body;

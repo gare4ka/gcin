@@ -31,6 +31,7 @@ var po = require('../po');
 var js = require('../js');
 var path = require('path');
 var mkdirp = require('mkdirp');
+var async = require('async');
 
 var noTransLabel = argv.l || undefined;
 
@@ -85,63 +86,22 @@ var saveFile = function(name, data, callback) {
   });
 }
 
-try{
-  readFilesByExt(argv.dir, 'gcin', function(files) {
-    var createLang = function(lang) {
-      var saved = {
-        fail: 0,
-        success: 0
-      };
+readFilesByExt(argv.dir, 'gcin', function(files) {
+  var filesAndPositions = files.map(function(file, pos) {
+    return [file, pos];
+  });
 
-      files.forEach(function(file, pos) {
-        var jsData = js.create(file.doc, argv.nsprefix, lang, pos);
-        var name = path.resolve(argv.output, 'lang', lang || file.doc.source, path.relative(argv.dir, file.name));
-        saveFile(name, jsData, function(err) {
-          if (err) {
-            saved.fail++;
-          } else {
-            saved.success++;
-          }
-
-          if(saved.fail + saved.success == files.length) {
-            printResult(saved, "Language '" + (lang || file.doc.source) + "'");
-          }
-        });
-      });
-    };
-
-    files.forEach(function(file) {
-      file.doc = gcin.parse(file.data);
-    });
-
-    var langs = [];
-    argvPo.forEach(function(arg) {
-      var data = new String(fs.readFileSync(arg.name));
-      var doc = po.parse(data);
-      var map = po.getMap(doc);
-
-      files.forEach(function(file) {
-        gcin.extendTranslation(file.doc, map, noTransLabel);
-      });
-
-      createLang(arg.lang);
-      langs.push(arg.lang);
-    });
-
-    if (argv.self && files.length > 0) {
-      createLang();
-      langs.push(files[0].doc.source);
-    }
-
+  var createLang = function(lang) {
     var saved = {
       fail: 0,
       success: 0
     };
 
-    files.forEach(function(file) {
-      var jsData = js.createUnion(file.doc, argv.nsprefix, langs);
-      var name = path.resolve(argv.output, path.relative(argv.dir, file.name));
-
+    async.eachLimit(filesAndPositions, 10, function(fileAndPos, callback) {
+      var file = fileAndPos[0];
+      var pos = fileAndPos[1];
+      var jsData = js.create(file.doc, argv.nsprefix, lang, pos);
+      var name = path.resolve(argv.output, 'lang', lang || file.doc.source, path.relative(argv.dir, file.name));
       saveFile(name, jsData, function(err) {
         if (err) {
           saved.fail++;
@@ -150,12 +110,59 @@ try{
         }
 
         if(saved.fail + saved.success == files.length) {
-          printResult(saved, "Union");
+          printResult(saved, "Language '" + (lang || file.doc.source) + "'");
         }
+        callback();
       });
+    }, function(err){});
+  };
+
+  files.forEach(function(file) {
+    file.doc = gcin.parse(file.data);
+  });
+
+  var langs = [];
+  argvPo.forEach(function(arg) {
+    var data = new String(fs.readFileSync(arg.name));
+    var doc = po.parse(data);
+    var map = po.getMap(doc);
+
+    files.forEach(function(file) {
+      gcin.extendTranslation(file.doc, map, noTransLabel);
     });
 
+    createLang(arg.lang);
+    langs.push(arg.lang);
   });
-} catch(e) {
-  process.stderr.write('Exception: ' + e.message + '\n');
-}
+
+  if (argv.self && files.length > 0) {
+    createLang();
+    langs.push(files[0].doc.source);
+  }
+
+  var saved = {
+    fail: 0,
+    success: 0
+  };
+
+
+  async.eachLimit(filesAndPositions, 10, function(fileAndPos, callback) {
+    var file = fileAndPos[0];
+    var pos = fileAndPos[1];
+    var jsData = js.createUnion(file.doc, argv.nsprefix, langs);
+    var name = path.resolve(argv.output, path.relative(argv.dir, file.name));
+
+    saveFile(name, jsData, function(err) {
+      if (err) {
+        saved.fail++;
+      } else {
+        saved.success++;
+      }
+
+      if(saved.fail + saved.success == files.length) {
+        printResult(saved, "Union");
+      }
+      callback();
+    });
+  }, function(err){});
+});

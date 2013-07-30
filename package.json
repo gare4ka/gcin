@@ -1,6 +1,6 @@
 {
   "name": "gcin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "i18n for Google Closure",
   "keywords": ["google closure", "i18n"],
   "author": {
@@ -10,7 +10,7 @@
   "preferGlobal": true,
   "private": false,
   "dependencies": {
-    "async": ">= 0.1.22",
+    "async": ">= 0.2.9",
     "mkdirp": ">= 0.3.4",
     "optimist": ">= 0.3.5",
     "xregexp": ">= 2.0.0"
