@@ -23,9 +23,9 @@ var create = function(docs) {
 
       ret += 'msgctxt "' + (msg.type == 'msgf' ? 'HAS FORMATTER, ' : '') + (doc.id ? doc.id + ' ' : '') + msg.id + '"\n';
       if (msg.body.indexOf('\n') != -1) {
-        ret += 'msgid ""\n"' + msg.body.replace(/"/g, '\\"').replace(/\n/g, '\\n"\n"') + '"\n';
+        ret += 'msgid ""\n"' + msg.body.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n"\n"') + '"\n';
       } else {
-        ret += 'msgid "' + msg.body.replace(/"/g, '\\"') + '"\n';
+        ret += 'msgid "' + msg.body.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"\n';
       }
       ret += 'msgstr ""\n';
     });

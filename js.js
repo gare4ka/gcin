@@ -49,9 +49,9 @@ var create = function(doc, nsPrefix, lang, id) {
     var spaces = '';
     if (multiline) {
       spaces += '  ';
-      ret += "\n" + spaces + "  '" + translation.replace(/'/g, "\\'").replace(/\n/g, "' +\n" + spaces + "  '") + "'\n";
+      ret += "\n" + spaces + "  '" + translation.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, "' +\n" + spaces + "  '") + "'\n";
     } else {
-      ret += "'" + translation.replace(/'/g, "\\'") + "'";
+      ret += "'" + translation.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
     }
 
     if (properties.length > 0) {
