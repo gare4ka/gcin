@@ -7,7 +7,7 @@ var osSep = process.platform === 'win32' ? '\\' : '/';
 
 var readFiles = function(files, callback) {
   async.map(files, fs.readFile, function(err, results) {
-    if (err !== null) {
+    if (err) {
       throw err;
     }
 
