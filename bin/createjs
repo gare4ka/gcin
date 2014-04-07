@@ -117,8 +117,13 @@ readFilesByExt(argv.dir, 'gcin', function(files) {
     }, function(err){});
   };
 
+  var docs = {};
   files.forEach(function(file) {
     file.doc = gcin.parse(file.data);
+    docs[file.doc.ns] = file.doc;
+  });
+  files.forEach(function(file) {
+    file.doc.docs = docs;
   });
 
   var langs = [];

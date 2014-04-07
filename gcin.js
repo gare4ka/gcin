@@ -1,6 +1,7 @@
 var XRegExp = require('xregexp').XRegExp;
 
 var SOURCE_REG_EXP = '<%\\s*@source\\s+(.+?)\\s*%>';
+var PATCH_REG_EXP = '<%\\s*@patch\\s+(.+?)\\s*%>';
 var NS_REG_EXP = '<%\\s*@namespace\\s+(.+?)\\s*%>';
 var ID_REG_EXP = '<%\\s*@id\\s+(.+?)\\s*%>';
 var MSG_REG_EXP = '<%\\s*@(?<type>msg|msgf)\\s+(?<id>[a-zA-Z0-9_]+)' +
@@ -25,6 +26,11 @@ var parse = function(data) {
   var ns = XRegExp.exec(headData, new XRegExp(NS_REG_EXP));
   if (ns) {
     doc.ns = ns[1];
+  }
+
+  var patch = XRegExp.exec(headData, new XRegExp(PATCH_REG_EXP));
+  if (patch) {
+    doc.patch = patch[1];
   }
 
   var id = XRegExp.exec(headData, new XRegExp(ID_REG_EXP));

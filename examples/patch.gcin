@@ -1,0 +1,8 @@
+<% @source ru %>
+<% @id baseId %>
+<% @patch base %>
+<% @namespace patch %>
+
+<% @msg serverError "Server error" {
+  Ошибка антисервера
+} %>
