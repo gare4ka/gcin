@@ -12,10 +12,14 @@ var create = function(doc, nsPrefix, lang, id) {
   ret += "\n";
 
   if (doc.patch) {
-    ns = _getLngNs(nsPrefix, lang, doc, doc.patch);
+    var patchNs = _getLngNs(nsPrefix, lang, doc, doc.patch);
     ret += "// Patch for " + doc.patch + '\n';
-    ret += "goog.require('" + ns + "');\n";
+    ret += "goog.require('" + patchNs + "');\n";
+    ret += "\n" + ns + ".patch = function() {\n";
+    ns = patchNs;
   }
+
+  var msgsRet = '';
 
   doc.msgs.forEach(function(msg, pos) {
     var msgName = ["MSG", (lang || 'self').toUpperCase(), msg.id.toUpperCase(), id, pos].join('_');
@@ -57,51 +61,61 @@ var create = function(doc, nsPrefix, lang, id) {
       properties.push(name);
     }
 
-    ret += "\n";
+    msgsRet += "\n";
     if (properties.length > 0) {
-      ret += "/** @param {Object} options */\n";
-      ret += ns + "." + msg.id + " = function(options) {\n";
+      msgsRet += "/** @param {Object} options */\n";
+      msgsRet += ns + "." + msg.id + " = function(options) {\n";
     } else {
-      ret += ns + "." + msg.id + " = function() {\n";
+      msgsRet += ns + "." + msg.id + " = function() {\n";
     }
 
-    ret += "  /**  @desc " + (msg.desc || msg.id) + " */\n";
-    ret += "  var " + msgName + " = goog.getMsg(";
+    msgsRet += "  /**  @desc " + (msg.desc || msg.id) + " */\n";
+    msgsRet += "  var " + msgName + " = goog.getMsg(";
 
     var multiline = translation.indexOf('\n') != -1;
     var spaces = '';
     if (multiline) {
       spaces += '  ';
-      ret += "\n" + spaces + "  '" + translation.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, "' +\n" + spaces + "  '") + "'\n";
+      msgsRet += "\n" + spaces + "  '" + translation.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, "' +\n" + spaces + "  '") + "'\n";
     } else {
-      ret += "'" + translation.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
+      msgsRet += "'" + translation.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
     }
 
     if (properties.length > 0) {
-      ret += ", {\n";
+      msgsRet += ", {\n";
       properties.forEach(function(prop, pos) {
         if (pos > 0) {
-          ret += ",\n";
+          msgsRet += ",\n";
         }
-        ret += spaces + "    '" + prop.replace(/'/g, "\\'") + "': options";
+        msgsRet += spaces + "    '" + prop.replace(/'/g, "\\'") + "': options";
         if ((/^[_a-zA-Z][_a-zA-Z0-9]*$/).test(prop)) {
-          ret += '.' + prop;
+          msgsRet += '.' + prop;
         } else {
-          ret += "['" + prop.replace(/'/g, "\\'") + "']";
+          msgsRet += "['" + prop.replace(/'/g, "\\'") + "']";
         }
       });
-      ret += "\n" + spaces + "  }";
+      msgsRet += "\n" + spaces + "  }";
     }
 
     if (multiline) {
-      ret += spaces + ");\n";
+      msgsRet += spaces + ");\n";
     } else {
-      ret += ");\n";
+      msgsRet += ");\n";
     }
 
-    ret += "  return " + msgName + ";\n";
-    ret += "};\n";
+    msgsRet += "  return " + msgName + ";\n";
+    msgsRet += "};\n";
   });
+
+  if (doc.patch) {
+    msgsRet = '  ' + msgsRet.replace(/\n/g, '\n  ');
+  }
+
+  ret += msgsRet;
+
+  if (doc.patch) {
+    ret += "\n};\n";
+  }
 
   return ret;
 };
