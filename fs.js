@@ -6,7 +6,7 @@ var path = require('path');
 var osSep = process.platform === 'win32' ? '\\' : '/';
 
 var readFiles = function(files, callback) {
-  async.map(files, fs.readFile, function(err, results) {
+  async.mapLimit(files, 20, fs.readFile, function(err, results) {
     if (err) {
       throw err;
     }
