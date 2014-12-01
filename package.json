@@ -19,6 +19,7 @@
     "node": ">= 0.8.0"
   },
   "repository": "git://github.com/4u/gcin.git",
+  "main": "index",
   "directories": {
     "bin": "./bin"
   },

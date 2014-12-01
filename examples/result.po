@@ -1,989 +1,135 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 19:03+0000\n"
-"PO-Revision-Date: 2012-10-22 09:49\n"
-"Last-Translator:   <webtranslator@ostrovok.ru>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Translated-Using: django-rosetta 0.6.8\n"
-
-#: static/js/base.mapgoogle.js:52
-msgid "Схема"
-msgstr "Map"
-
-#: static/js/base.mapgoogle.js:53
-msgid "Показать схему"
-msgstr "Show map"
-
-#: static/js/main.geo.js:129
-msgid "ищем адрес..."
-msgstr "looking for the address..."
-
-#: static/js/main.geo.js:180
-msgid "адрес не найден &mdash; попробуйте другой"
-msgstr "The address is not found &mdash; please try another one."
-
-#: static/js/main.geo.js:294
-msgid "расстоянию до {$region}"
-msgstr "distance to {$region}"
-
-#: static/js/main.geo.js:417 tmp/jst/js/template.serphotelslist.jst.js:1
-msgid "м"
-msgstr "m"
-
-#: static/js/main.geo.js:417 tmp/jst/js/template.serphotelslist.jst.js:1
-msgid "км"
-msgstr "km"
-
-#: static/js/main.geo.js:457 static/js/main.geo.js.c:479
-msgid "до {$region}"
-msgstr "to {$region}"
-
-#: static/js/main.overlays.js:216
-msgid ""
-"Приносим извинения, произошла ошибка.\n"
-"Пожалуйста, воспользуйтесь звонком в наш контакт-центр."
-msgstr "Sorry, an error occured. Please call our Customer Care."
-
-#: static/js/main.overlays.js:244
-msgid "Произошел сбой соединения. Пожалуйста, повторите попытку."
-msgstr "Connection error. Please try again."
-
-#: static/js/main.searchform.js:202
-msgid "Произошла ошибка при запросе на сервер. Пожалуйста, попробуйте еще раз."
-msgstr "The request has not reached the server. Please try again."
-
-#: static/js/main.validate.js:100
-msgid "Пожалуйста, заполните это поле"
-msgstr "Please fill this in"
-
-#: static/js/main.validate.js:103
-msgid "Пожалуйста, выберите подходящий вариант"
-msgstr "Please choose the option you prefer"
-
-#: static/js/main.validate.js:115 static/js/main.validate.js.c:123
-msgid "Неправильно заполнено поле"
-msgstr "Oops, this form is filled incorrectly"
-
-#: static/js/main.validate.js:165
-msgid "Пожалуйста, укажите адрес эл. почты"
-msgstr "Please fill in your email address"
-
-#: static/js/main.validate.js:169
-msgid "Пожалуйста, укажите правильный адрес эл. почты"
-msgstr "Please fill in your correct email address"
-
-#: static/js/main.validate.js:176
-msgid "Пожалуйста, укажите имя"
-msgstr "Please fill in your first name"
-
-#: static/js/main.validate.js:180
-msgid "Пожалуйста, укажите правильное имя"
-msgstr "Please fill in your correct first name"
-
-#: static/js/main.validate.js:187
-msgid "Пожалуйста, укажите фамилию"
-msgstr "Please fill in your last name"
-
-#: static/js/main.validate.js:191
-msgid "Пожалуйста, укажите фамилию правильно"
-msgstr "Please fill in your correct last name"
-
-#: static/js/main.validate.js:196
-msgid "Поле заполнено некорректно"
-msgstr "Oops, this form is filled incorrectly"
-
-#: static/js/main.validate.js:202
-msgid "Пожалуйста, укажите номер телефона"
-msgstr "Please fill in your phone number"
-
-#: static/js/main.validate.js:206
-msgid "Пожалуйста, укажите правильный номер телефона"
-msgstr "Please fill in your correct phone number"
-
-#: static/js/module.serpcurrencyselect.js:35
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-msgid "руб."
-msgstr "RUB"
-
-#: static/js/utils.js:312
-msgid "январь"
-msgstr "January"
-
-#: static/js/utils.js:313
-msgid "февраль"
-msgstr "February"
-
-#: static/js/utils.js:314
-msgid "март"
-msgstr "March"
-
-#: static/js/utils.js:315
-msgid "апрель"
-msgstr "April"
-
-#: static/js/utils.js:316
-msgid "май"
-msgstr "May"
-
-#: static/js/utils.js:317
-msgid "июнь"
-msgstr "June"
-
-#: static/js/utils.js:318
-msgid "июль"
-msgstr "July"
-
-#: static/js/utils.js:319
-msgid "август"
-msgstr "August"
-
-#: static/js/utils.js:320
-msgid "сентябрь"
-msgstr "September"
-
-#: static/js/utils.js:321
-msgid "октябрь"
-msgstr "October"
-
-#: static/js/utils.js:322
-msgid "ноябрь"
-msgstr "November"
-
-#: static/js/utils.js:323
-msgid "декабрь"
-msgstr "December"
-
-#: static/js/utils.js:326
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:77
-msgid "января"
-msgstr "January"
-
-#: static/js/utils.js:327
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:77
-msgid "февраля"
-msgstr "February"
-
-#: static/js/utils.js:328
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:77
-msgid "марта"
-msgstr "March"
-
-#: static/js/utils.js:329
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:77
-msgid "апреля"
-msgstr "April"
-
-#: static/js/utils.js:330
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:77
-msgid "мая"
-msgstr "May"
-
-#: static/js/utils.js:331
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:77
-msgid "июня"
-msgstr "June"
-
-#: static/js/utils.js:332
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:78
-msgid "июля"
-msgstr "July"
-
-#: static/js/utils.js:333
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:78
-msgid "августа"
-msgstr "August"
-
-#: static/js/utils.js:334
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:78
-msgid "сентября"
-msgstr "September"
-
-#: static/js/utils.js:335
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:78
-msgid "октября"
-msgstr "October"
-
-#: static/js/utils.js:336
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:78
-msgid "ноября"
-msgstr "November"
-
-#: static/js/utils.js:337
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:78
-msgid "декабря"
-msgstr "December"
-
-#: static/js/utils.js:1045
-msgid "с"
-msgstr "from"
-
-#: static/js/utils.js:1047
-msgid "по"
-msgstr "to"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Пн"
-msgstr "Mon"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Вт"
-msgstr "Tue"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Ср"
-msgstr "Wed"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Чт"
-msgstr "Thu"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Пт"
-msgstr "Fri"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Сб"
-msgstr "Sat"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:65
-msgid "Вс"
-msgstr "Sun"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:67
-msgid "Понедельник"
-msgstr "Monday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:67
-msgid "Вторник"
-msgstr "Tuesday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:67
-msgid "Среда"
-msgstr "Wednesday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:67
-msgid "Четверг"
-msgstr "Thursday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:67
-msgid "Пятница"
-msgstr "Friday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:68
-msgid "Суббота"
-msgstr "Saturday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:68
-msgid "Воскресенье"
-msgstr "Sunday"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:73
-msgid "Январь"
-msgstr "January"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:73
-msgid "Февраль"
-msgstr "February"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:73
-msgid "Март"
-msgstr "March"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:73
-msgid "Апрель"
-msgstr "April"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:73
-msgid "Май"
-msgstr "May"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:73
-msgid "Июнь"
-msgstr "June"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:74
-msgid "Июль"
-msgstr "July"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:74
-msgid "Август"
-msgstr "August"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:74
-msgid "Сентябрь"
-msgstr "September"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:74
-msgid "Октябрь"
-msgstr "October"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:74
-msgid "Ноябрь"
-msgstr "November"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:74
-msgid "Декабрь"
-msgstr "December"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:81
-msgid "Янв"
-msgstr "Jan"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:81
-msgid "Фев"
-msgstr "Feb"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:81
-msgid "Мар"
-msgstr "Mar"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:81
-msgid "Апр"
-msgstr "Apr"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:81
-msgid "Мая"
-msgstr "May"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:81
-msgid "Июн"
-msgstr "Jun"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:82
-msgid "Июл"
-msgstr "Jul"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:82
-msgid "Авг"
-msgstr "Aug"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:82
-msgid "Сен"
-msgstr "Sep"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:82
-msgid "Окт"
-msgstr "Oct"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:82
-msgid "Ноя"
-msgstr "Nov"
-
-#: templates/blocks/b-giant-search-form/b-giant-search-form.js:82
-msgid "Дек"
-msgstr "Dec"
-
-#: templates/blocks/b-hotel-minprice/b-hotel-minprice.js:60
-#: templates/blocks/b-hotelpage/b-hotelpage.js:543
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "ночь|ночи|ночей"
-msgstr ""
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:43
-msgid "популярность"
-msgstr "popularity"
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:44
-msgid "оценка гостей"
-msgstr "guest reviews"
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:45
-#: tmp/jst/blocks/b-hotel-similar-diff/b-hotel-similar-diff.jst.js:1
-msgid "цена"
-msgstr "price"
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:46
-msgid "удаленность"
-msgstr "distance from city center"
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:50
-msgid "популярности"
-msgstr "popularity"
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:51
-msgid "цене"
-msgstr "price"
-
-#: templates/blocks/b-serp-sort/b-serp-sort.js:52
-msgid "оценке гостей"
-msgstr "guest reviews"
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-proceed.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "Забронировать"
-msgstr "Book"
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-msgid "последний номер!"
-msgstr ""
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-msgid "осталось всего {$allotment_num} {$room_plural}"
-msgstr ""
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#, fuzzy
-msgid "Специальная цена"
-msgstr "Lowest price"
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-msgid "Только у нас &mdash; самая низкая цена на этот номер."
-msgstr ""
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-#, fuzzy
-msgid "руб"
-msgstr "RUB"
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "в номере"
-msgstr ""
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-msgid "Спальные места"
-msgstr ""
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid ""
-"<strong class=\"b-hotel-rooms__final-price-tip-title\">Это окончательные "
-"цены.</strong>Ostrovok.ru не возьмёт никаких дополнительных комиссий за "
-"бронирование."
-msgstr ""
-
-#: tmp/jst/blocks/b-catalog-rooms/b-catalog-rooms.jst.js:1
-#, fuzzy
-msgid ""
-"К сожалению, все номера в этом отеле на выбранные даты распроданы, но вы "
-"можете выбрать другие даты или посмотреть другие отели:"
-msgstr ""
-"Unfortunately, there&nbsp;are no rooms left available at&nbsp;this&nbsp;"
-"hotel on&nbsp;the&nbsp;chosen&nbsp;days. Please check other days or choose "
-"another hotel."
-
-#: tmp/jst/blocks/b-favorites-control/b-favorites-control-all.jst.js:1
-msgid "Показать все отели"
-msgstr "Show all hotels"
-
-#: tmp/jst/blocks/b-favorites-control/b-favorites-control-disabled.jst.js:1
-msgid "Нет избранных отелей"
-msgstr "No favourite hotels"
-
-#: tmp/jst/blocks/b-favorites-control/b-favorites-control.jst.js:1
-msgid "Показать"
-msgstr "Show"
-
-#: tmp/jst/blocks/b-favorites-control/b-favorites-control.jst.js:1
-#: tmp/jst/blocks/b-serp-filter-city/b-serp-filter-city.jst.js:1
-msgid "отель|отеля|отелей"
-msgstr "hotel|hotels"
-
-#: tmp/jst/blocks/b-hotel-available-rooms-counter/b-hotel-available-rooms-counter.jst.js:1
-#, fuzzy
-msgid "Все доступные номера"
-msgstr "There are only 2 rooms left."
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-msgid "Самый дешёвый номер с бесплатной отменой бронирования"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-msgid "Самый дешёвый номер с завтраком"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-msgid "Самый дешёвый номер с бесплатной отменой и завтраком"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-msgid "Самый дешёвый номер"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-proceed.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#, fuzzy
-msgid "Моментальное подтверждение"
-msgstr "Oops, this form is filled incorrectly"
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-proceed.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#, fuzzy
-msgid "Оплата по завершении бронирования"
-msgstr "Payment in advance"
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-proceed.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-msgid "Оплата в отеле"
-msgstr "Payment upon arrival"
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-proceed.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid ""
-"Оплата до заезда в отель: банковской картой или <span class=\"b-hotel-room-"
-"proceed__payment-cash\">наличными <span class=\"b-hotel-room-"
-"proceed__payment-details\">Вы можете оплатить бронирование наличными в "
-"салонах связи «Евросети» или «Связном», либо у нас в офисе.</span></span>"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-proceed.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#, fuzzy
-msgid "Оплата банковской картой до заезда в отель"
-msgstr "Payment in advance"
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid ""
-"Средняя цена<br>за ночь <span class=\"b-hotel-room-price__average-value\">"
-"{$price} {$currency}</span>"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#, fuzzy
-msgid "Детализация стоимости"
-msgstr "Lowest price"
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "Налоги и сборы"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "Только у нас самая<br>низкая цена на<br>этот номер"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#, fuzzy
-msgid "Остался последний номер"
-msgstr "There are only 2 rooms left."
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "Осталось всего 2 номера"
-msgstr "There are only 2 rooms left."
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid ""
-"Остался {$room_num} номер|Осталось {$room_num} номера|Осталось {$room_num} "
-"номеров"
-msgstr "There is {$room_num} room left|There are {$room_num} rooms left"
-
-#: tmp/jst/blocks/b-hotel-best-room/b-hotel-best-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-room.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms__rate-price.jst.js:1
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "лучшая цена"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid ""
-"Все цены указаны для {$adult_num} {$adult_plural} и {$child_num} "
-"{$child_plural}"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "взрослого|взрослых|взрослых"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "ребёнка|детей|детей"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "Все цены указаны для {$adult_num} {$adult_plural}"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-price-notice.jst.js:1
-#: tmp/jst/blocks/b-hotel-rooms/b-hotel-rooms.jst.js:1
-#: tmp/jst/blocks/b-hotelpage-trip/b-hotel-rooms-trip.jst.js:1
-msgid "при условии размещения на {$nights_num} {$night_plural}"
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-searched-room/b-hotel-searched-room.jst.js:1
-msgid ""
-"<strong class=\"b-hotel-searched-room__final-price-tip-title\">Это "
-"окончательные цены.</strong>    Ostrovok.ru не возьмёт никаких "
-"дополнительных комиссий за бронирование."
-msgstr ""
-
-#: tmp/jst/blocks/b-hotel-similar-diff/b-hotel-similar-diff.jst.js:1
-msgid "ниже на"
-msgstr "higher by"
-
-#: tmp/jst/blocks/b-hotel-similar-diff/b-hotel-similar-diff.jst.js:1
-msgid "выше на"
-msgstr "lower by"
-
-#: tmp/jst/blocks/b-serp-filter-city/b-serp-filter-more-link.jst.js:1
-msgid ""
-"Показать еще {$city_num} город|Показать еще {$city_num} города|Показать еще "
-"{$city_num} городов"
-msgstr "Show {$city_num} more destination|Show {$city_num} more destinations"
-
-#: tmp/jst/blocks/b-serp-filter-city/b-serp-filter-more-link.jst.js:1
-msgid "Свернуть"
-msgstr "Minimize"
-
-#: tmp/jst/blocks/b-serp-last-booking/b-serp-last-booking.jst.js:1
-msgid "Последнее бронирование {$location} было {$period} назад"
-msgstr "Last booking {$location} was made {$period} ago"
-
-#: tmp/jst/blocks/b-serp-sort/b-serp-sort.jst.js:1
-msgid "сортировать по:"
-msgstr "sort by:"
-
-#: tmp/jst/blocks/landings.city_sem4/landings.city_sem4.hotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid ""
-"за {$nights_count} ночь|за {$nights_count} ночи|за {$nights_count} ночей"
-msgstr "for {$nights_count} night|for {$nights_count} nights"
-
-#: tmp/jst/blocks/landings.city_sem4/landings.city_sem4.hotelslist.jst.js:1
-#: tmp/jst/js/template.bigmapinfobox.jst.js:1
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "цена неизвестна"
-msgstr "price is unknown"
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.error.jst.js:1
-msgid ""
-"К&nbsp;сожалению, на&nbsp;выбранный вами промежуток времени, все номера "
-"в&nbsp;этом отеле распроданы. Попробуйте указать другие даты или выберите "
-"другой отель."
-msgstr ""
-"Unfortunately, there&nbsp;are no rooms left available at&nbsp;this&nbsp;"
-"hotel on&nbsp;the&nbsp;chosen&nbsp;days. Please check other days or choose "
-"another hotel."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.error.jst.js:1
-msgid ""
-"Похоже, что вы&nbsp;ввели одинаковые даты заезда и&nbsp;выезда. К&nbsp;"
-"сожалению, отели не&nbsp;сдают номера меньше, чем на&nbsp;сутки, поэтому "
-"мы&nbsp;перенесли дату выезда на&nbsp;день вперед."
-msgstr ""
-"Looks like you&nbsp;chose the&nbsp;same date for&nbsp;check-in and check-"
-"out. Unfortunately, hotels don't&nbsp;sell rooms for less&nbsp;than one&nbsp;"
-"night. We&nbsp;have therefore moved the&nbsp;check-out&nbsp;date one&nbsp;"
-"day forward."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.error.jst.js:1
-msgid ""
-"Похоже, что вы&nbsp;ввели дату заезда или&nbsp;выезда из&nbsp;прошлого. "
-"К&nbsp;сожалению, машину времени еще не&nbsp;изобрели, поэтому мы&nbsp;нашли "
-"для&nbsp;вас отели на&nbsp;ближайшие доступные даты."
-msgstr ""
-"Looks like you&nbsp;chose the&nbsp;check-in or the&nbsp;check-out&nbsp;date "
-"from&nbsp;the&nbsp;past. Unfortunately, the&nbsp;time&nbsp;machine has still "
-"to&nbsp;be&nbsp;invented. We&nbsp;have therefore checked hotels for&nbsp;"
-"the&nbsp;closest available dates for&nbsp;you."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.error.jst.js:1
-msgid ""
-"Похоже, вы&nbsp;собираетесь выехать из&nbsp;отеля еще до&nbsp;того, как туда "
-"заедете. К&nbsp;сожалению, это невозможно, поэтому мы&nbsp;поменяли даты "
-"местами."
-msgstr ""
-"Looks like you&nbsp;are&nbsp;planning to&nbsp;check&nbsp;out before you "
-"check&nbsp;in. Unfortunately, that's&nbsp;impossible. We&nbsp;have therefore "
-"swapped the&nbsp;dates."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.error.jst.js:1
-msgid ""
-"К&nbsp;сожалению, в&nbsp;выбранном вами отеле нет номеров, которые бы&nbsp;"
-"соответствовали указанным вами требованиям. Ниже представлены отели, "
-"удовлетворяющие вашим требованиям и&nbsp;датам."
-msgstr ""
-"Unfortunately, the&nbsp;hotel that you picked doesn't&nbsp;offer rooms that "
-"meet your requirements. You can&nbsp;see the&nbsp;hotels that fit your "
-"requirements and the&nbsp;chosen&nbsp;dates below."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "К сожалению, ни один отель не соответствует указанным критериям поиска"
-msgstr "Unfortunately, none of our hotels fit these search requirements."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Звоните нам, мы подберём отель и предложим вам скидку"
-msgstr ""
-"Give us a call! We will help you pick a hotel and offer you a discount."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Звонок по России бесплатный"
-msgstr "Calls in Russia are free"
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid ""
-"Благодарим вас за интерес!<br>Наши менеджеры уже получили необходимую "
-"информацию и работают над вашими пожеланиями."
-msgstr ""
-"Thank you for your interest!<br>Our managers have already got the "
-"information and are processing your request."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid ""
-"Ни один из {$hotels_count} отелей не подходит под ваши строгие&nbsp;"
-"требования"
-msgstr "None of our {$hotels_count} fit your strict&nbsp;requirements"
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid ""
-"Попробуйте отказаться от одного из условий поиска или посмотрите <a class="
-"\"serp-reset-filters\" href=\"#\">все отели {$destination}</a>"
-msgstr ""
-"Try compromising on one of the search conditions or check <a class=\"serp-"
-"reset-filters\" href=\"#\">all hotels {$destination}</a>"
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Ошибка: дата заезда."
-msgstr "Error: check-in date."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Укажите, пожалуйста, корректную дату заезда."
-msgstr "Please fill in the correct check-in date."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Ошибка: дата выезда."
-msgstr "Error: check-out date."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Укажите, пожалуйста, корректную дату выезда."
-msgstr "Please fill in the correct check-out date."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Укажите, пожалуйста, число от&nbsp;1 до&nbsp;6."
-msgstr "Please choose a number from&nbsp;1 to&nbsp;6."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Укажите, пожалуйста, число от&nbsp;1 до&nbsp;4."
-msgstr "Please choose a number from&nbsp;1 to&nbsp;4."
-
-#: tmp/jst/blocks/serperrorhandler/serperrorhandler.overlay.jst.js:1
-msgid "Укажите, пожалуйста, число от&nbsp;1 до&nbsp;18."
-msgstr "Please choose a number from&nbsp;1 to&nbsp;18."
-
-#: tmp/jst/js/template.bigmapannotation.jst.js:1
-msgid ""
-"Тепловые карты строятся на&nbsp;основе данных о&nbsp;популярности мест "
-"в&nbsp;<a href=\"http://www.foursquare.com\">Foursquare</a>."
-msgstr ""
-"Heat maps are based on&nbsp;the&nbsp;popularity of&nbsp;the&nbsp;spot "
-"on&nbsp;<a href=\"http://www.foursquare.com\">Foursquare</a>."
-
-#: tmp/jst/js/template.bigmapinfobox.jst.js:1
-msgid ""
-"за&nbsp;{$nights}&nbsp;ночь|за&nbsp;{$nights}&nbsp;ночи|за&nbsp;{$nights}"
-"&nbsp;ночей"
-msgstr "for&nbsp;{$nights}&nbsp;night|for&nbsp;{$nights}&nbsp;nights"
-
-#: tmp/jst/js/template.serpfilterratinglabel.jst.js:1
-msgid "любая"
-msgstr "any"
-
-#: tmp/jst/js/template.serpfilterratinglabel.jst.js:1
-msgid "и выше"
-msgstr "and higher"
-
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "Показать отель на карте"
-msgstr "Show it on the map"
-
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-msgid ""
-"<span class=\"b-serp-hotel__distance\">{$distance} {$units}</span> <span "
-"class=\"b-serp-hotel__from\">от {$address}</span> на {$direction}"
-msgstr ""
-"<span class=\"b-serp-hotel__distance\">{$distance} {$units}</span> <span "
-"class=\"b-serp-hotel__from\">from {$address}</span> на {$direction}"
-
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-msgid ""
-"<span class=\"b-serp-hotel__distance\">{$distance} {$units}</span> <span "
-"class=\"b-serp-hotel__from\">от центра</span> на {$direction}"
-msgstr ""
-"<span class=\"b-serp-hotel__distance\">{$distance} {$units}</span> <span "
-"class=\"b-serp-hotel__from\">from the city center</span> на {$direction}"
-
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-msgid "Оплата до заезда в отель"
-msgstr "Payment in advance"
-
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#, fuzzy
-msgid "Последнее бронирование: {$period} назад"
-msgstr "Last booking:<br>{$period} ago"
-
-#: tmp/jst/js/template.serphotelslist.jst.js:1
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "Последний шанс!<br>Остался один номер"
-msgstr "This is your last chance!<br>There is only one room left."
-
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "Посмотреть на карте"
-msgstr "Show on the map"
-
-#: tmp/jst/js/template.serphotelslist_ab_blue.jst.js:1
-msgid "Последнее бронирование:<br>{$period} назад"
-msgstr "Last booking:<br>{$period} ago"
-
-#: tmp/jst/js/template.serppricefilterheading.jst.js:1
-msgid "Минимальная стоимость"
-msgstr "Lowest price"
-
-#: tmp/jst/js/template.serppricefilterheading.jst.js:1
-msgid ""
-"Стоимость за&nbsp;{$nights}&nbsp;ночь|Стоимость за&nbsp;{$nights}&nbsp;ночи|"
-"Стоимость за&nbsp;{$nights}&nbsp;ночей"
-msgstr ""
-"Price for&nbsp;{$nights}&nbsp;night|Price for&nbsp;{$nights}&nbsp;nights "
-
-#: tmp/jst/js/templates.filters.jst.js:1
-msgid ""
-"Отели <span class=\"requestDetails_place_name\">{$region_name}</span>, "
-"{$country_name}"
-msgstr ""
-"Hotels in <span class=\"requestDetails_place_name\">{$region_name}</span>, "
-"{$country_name}"
-
-#: tmp/jst/js/templates.filters.jst.js:1
-msgid ""
-"для&nbsp;{$adults_num}&nbsp;взрослого|для&nbsp;{$adults_num}&nbsp;взрослых|"
-"для&nbsp;{$adults_num}&nbsp;взрослых"
-msgstr "for&nbsp;{$adults_num}&nbsp;adult|for&nbsp;{$adults_num}&nbsp;adults"
-
-#: tmp/jst/js/templates.filters.jst.js:1
-msgid ""
-"и&nbsp;{$child_num}&nbsp;ребенка|и&nbsp;{$child_num}&nbsp;детей|и&nbsp;"
-"{$child_num}&nbsp;детей"
-msgstr "and&nbsp;{$child_num}&nbsp;child|and&nbsp;{$child_num}&nbsp;children"
-
-#: tmp/jst/js/templates.filters.jst.js:1
-msgid "изменить условия"
-msgstr "change search conditions"
-
-#: Server error
-msgctxt "ota.msgs.base SERVER_ERROR"
+#: base
+#. Server error
+msgctxt "baseId serverError"
 msgid "Ошибка сервера"
-msgstr "Server Error"
+msgstr ""
 
-#: Тестовое описание
-#: noun
-msgctxt "ota.msgs.base TEST"
+#: base
+#. Тестовое описание
+#. noun
+msgctxt "baseId test"
 msgid "Тест"
-msgstr "Test"
+msgstr ""
 
-#~ msgid "Отправлено"
-#~ msgstr "Sent. Thank you!"
+#: base
+#. Приветствуем юзера
+msgctxt "baseId helloUser"
+msgid "Привет, {$username}"
+msgstr ""
 
-#~ msgid "рейтинг"
-#~ msgstr "rating"
+#: base
+msgctxt "baseId quote"
+msgid ""
+"\"Не тот поэт, кто рифмы плесть умеет.\"\n"
+"  А. С. Пушкин"
+msgstr ""
 
-#~ msgid "рейтингу"
-#~ msgstr "rating"
+#: base
+#. Подзаголовок серпа
+msgctxt "baseId title"
+msgid ""
+"{GUESTS, select,\n"
+"    all {\n"
+"      for {NUM_ADULTS} {NUM_ADULTS, plural,\n"
+"        one {adult}\n"
+"        other {adults}\n"
+"      } and {NUM_CHILDREN} {NUM_CHILDREN, plural\n"
+"        one {child}\n"
+"        other {children}\n"
+"      }\n"
+"    }\n"
+"    adults {\n"
+"      for {NUM_ADULTS} {NUM_ADULTS, plural,\n"
+"        one {adult}\n"
+"        other {adults}\n"
+"      }\n"
+"    }\n"
+"    children {\n"
+"      для {NUM_CHILDREN} {NUM_CHILDREN, plural,\n"
+"        one {child}\n"
+"        other {children}\n"
+"      }\n"
+"    }\n"
+"    other {}\n"
+"  }\n"
+"  {IS_DATELESS, select,\n"
+"    no {\n"
+"      from {NUM_FROM_DATE} {IS_SAME_MONTH, select,\n"
+"        no {{NUM_FROM_MONTH}}\n"
+"        other {}\n"
+"      }  to {NUM_TO_DATE} {NUM_TO_MONTH}\n"
+"    }\n"
+"    other {}\n"
+"  }"
+msgstr ""
 
-#~ msgid "Show"
-#~ msgstr "Show"
+#: patch
+#. Server error
+msgctxt "baseId serverError"
+msgid "Ошибка антисервера"
+msgstr ""
 
-#~ msgid "Hide"
-#~ msgstr "Hide"
+#: test
+#. Server error
+msgctxt "test serverError"
+msgid "Ошибка сервера"
+msgstr ""
+
+#: test
+#. Тестовое описание
+#. noun
+msgctxt "test test"
+msgid "Тест"
+msgstr ""
+
+#: test
+#. Приветствуем юзера
+msgctxt "test helloUser"
+msgid "Привет, {$username}"
+msgstr ""
+
+#: test
+msgctxt "test quote"
+msgid ""
+"\"Не тот поэт, кто рифмы плесть умеет.\"\n"
+"  А. С. Пушкин"
+msgstr ""
+
+#: test
+#. Подзаголовок серпа
+msgctxt "test title"
+msgid ""
+"{GUESTS, select,\n"
+"    all {\n"
+"      for {NUM_ADULTS} {NUM_ADULTS, plural,\n"
+"        one {adult}\n"
+"        other {adults}\n"
+"      } and {NUM_CHILDREN} {NUM_CHILDREN, plural\n"
+"        one {child}\n"
+"        other {children}\n"
+"      }\n"
+"    }\n"
+"    adults {\n"
+"      for {NUM_ADULTS} {NUM_ADULTS, plural,\n"
+"        one {adult}\n"
+"        other {adults}\n"
+"      }\n"
+"    }\n"
+"    children {\n"
+"      для {NUM_CHILDREN} {NUM_CHILDREN, plural,\n"
+"        one {child}\n"
+"        other {children}\n"
+"      }\n"
+"    }\n"
+"    other {}\n"
+"  }\n"
+"  {IS_DATELESS, select,\n"
+"    no {\n"
+"      from {NUM_FROM_DATE} {IS_SAME_MONTH, select,\n"
+"        no {{NUM_FROM_MONTH}}\n"
+"        other {}\n"
+"      }  to {NUM_TO_DATE} {NUM_TO_MONTH}\n"
+"    }\n"
+"    other {}\n"
+"  }"
+msgstr ""

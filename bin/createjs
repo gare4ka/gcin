@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var gcin = require('../index');
 var argv = require('optimist')
   .usage('Creates js files from gcin files.\nUsage: $0 -n [nsPrefix] -d [gcinDir] -o [outputDir] [-p [lang:poFile]]')
   .boolean('self')
@@ -23,21 +24,9 @@ var argv = require('optimist')
   .describe('nsprefix', 'Namespace prefix')
   .argv;
 
-var fs = require('fs');
-var readFilesByExt = require('../fs').readFilesByExt;
-var mkdir = require('../fs').mkdir;
-var gcin = require('../gcin');
-var po = require('../po');
-var js = require('../js');
-var path = require('path');
-var mkdirp = require('mkdirp');
-var async = require('async');
-
-var noTransLabel = argv.l || undefined;
-
-var argvPoTemp = argv.po instanceof Array ? argv.po : [argv.po];
-var argvPo = [];
-argvPoTemp.forEach(function(arg) {
+var poTemp = argv.po instanceof Array ? argv.po : [argv.po];
+var po = [];
+poTemp.forEach(function(arg) {
   if (arg === undefined) {
     return;
   }
@@ -45,129 +34,16 @@ argvPoTemp.forEach(function(arg) {
     throw Error("Bad po param format. Need lang:path");
   }
   var tmp = arg.split(':');
-  argvPo.push({
+  po.push({
     lang: tmp[0],
     name: tmp[1]
-  })
+  });
 });
+argv.po = po;
 
-var printResult = function(saved, opt_prefix) {
-  var ret = '';
-  if (opt_prefix) {
-    ret += opt_prefix + ': saved ';
-  } else {
-    ret += 'Saved ';
+gcin.create.js(argv, function(errs, data) {
+  if (errs) {
+    errs = errs.map(function(err) { return err.message }).join('\n');
   }
-  if (saved.success) {
-    ret += saved.success + (saved.success != 1 ? ' files' : ' file');
-  }
-
-  if (saved.fail) {
-    if (saved.success) {
-      ret += ', ';
-    }
-    ret += 'failed ' + saved.fail + (saved.fail != 1 ? ' files' : ' file');
-  }
-
-  ret += '\n';
-
-  process.stdout.write(ret);
-}
-
-var saveFile = function(name, data, callback) {
-  var dir = path.dirname(name);
-  mkdirp(dir, function(err) {
-    if (err) {
-      return callback(err);
-    }
-    fs.writeFile(name + '.js', data, function (err) {
-      return callback(err);
-    });
-  });
-}
-
-readFilesByExt(argv.dir, 'gcin', function(files) {
-  var filesAndPositions = files.map(function(file, pos) {
-    return [file, pos];
-  });
-
-  var createLang = function(lang) {
-    var saved = {
-      fail: 0,
-      success: 0
-    };
-
-    async.eachLimit(filesAndPositions, 10, function(fileAndPos, callback) {
-      var file = fileAndPos[0];
-      var pos = fileAndPos[1];
-      var jsData = js.create(file.doc, argv.nsprefix, lang, pos);
-      var name = path.resolve(argv.output, 'lang', lang || file.doc.source, path.relative(argv.dir, file.name));
-      saveFile(name, jsData, function(err) {
-        if (err) {
-          saved.fail++;
-        } else {
-          saved.success++;
-        }
-
-        if(saved.fail + saved.success == files.length) {
-          printResult(saved, "Language '" + (lang || file.doc.source) + "'");
-        }
-        callback();
-      });
-    }, function(err){});
-  };
-
-  var docs = {};
-  files.forEach(function(file) {
-    file.doc = gcin.parse(file.data);
-    docs[file.doc.ns] = file.doc;
-  });
-  files.forEach(function(file) {
-    file.doc.docs = docs;
-  });
-
-  var langs = [];
-  argvPo.forEach(function(arg) {
-    var data = new String(fs.readFileSync(arg.name));
-    var doc = po.parse(data);
-    var map = po.getMap(doc);
-
-    files.forEach(function(file) {
-      gcin.extendTranslation(file.doc, map, noTransLabel);
-    });
-
-    createLang(arg.lang);
-    langs.push(arg.lang);
-  });
-
-  if (argv.self && files.length > 0) {
-    createLang();
-    langs.push(files[0].doc.source);
-  }
-
-  var saved = {
-    fail: 0,
-    success: 0
-  };
-
-
-  async.eachLimit(filesAndPositions, 10, function(fileAndPos, callback) {
-    var file = fileAndPos[0];
-    var pos = fileAndPos[1];
-    var jsData = js.createUnion(file.doc, argv.nsprefix, langs);
-    var name = path.resolve(argv.output, path.relative(argv.dir, file.name));
-
-    saveFile(name, jsData, function(err) {
-      if (err) {
-        saved.fail++;
-      } else {
-        saved.success++;
-      }
-
-      if(saved.fail + saved.success == files.length) {
-        printResult(saved, "Union");
-      }
-      callback();
-    });
-  }, function(err){});
+  process.stdout.write((errs || 'Success!') + '\n' + JSON.stringify(data, null, 2));
 });

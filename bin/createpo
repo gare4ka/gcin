@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var gcin = require('../index');
 var argv = require('optimist')
   .usage('Creates po file from gcin files.\nUsage: $0 -d [gcinDir] -o [poFile]')
   .demand('dir')
@@ -10,23 +11,8 @@ var argv = require('optimist')
   .describe('output', 'Path to po file')
   .argv;
 
-var fs = require('fs');
-var readFilesByExt = require('../fs').readFilesByExt;
-var gcin = require('../gcin');
-var po = require('../po');
-
-try{
-  readFilesByExt(argv.dir, 'gcin', function(files) {
-    var docs = [];
-    files.forEach(function(file) {
-      docs.push(gcin.parse(file.data));
-    });
-
-    fs.writeFile(argv.o, po.create(docs), function (err) {
-      if (err) throw err;
-      process.stdout.write('Saved: ' + argv.o + '\n');
-    });
-  });
-} catch(e) {
-  process.stderr.write('Exception: ' + e.message + '\n');
-}
+gcin.create.po(argv, function(err) {
+  process.stdout.write(err ?
+      'Error: ' + err.message + '\n' :
+      'Saved: ' + argv.output + '\n');
+});

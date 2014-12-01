@@ -10,7 +10,7 @@ my.i18n.msgs.lang.en.patch.patch = function() {
   
   my.i18n.msgs.lang.en.base.serverError = function() {
     /**  @desc Server error */
-    var MSG_EN_SERVERERROR_1_0 = goog.getMsg('Server error');
+    var MSG_EN_SERVERERROR_1_0 = goog.getMsg('Ошибка антисервера');
     return MSG_EN_SERVERERROR_1_0;
   };
   

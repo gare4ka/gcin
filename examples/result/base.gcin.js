@@ -2,12 +2,7 @@
 // usually there is no reason to edit it manually
 
 goog.provide('my.i18n.msgs.base');
-goog.require('my.i18n.msgs.lang.en.base');
 goog.require('my.i18n.msgs.lang.ru.base');
-
-if (goog.LOCALE == 'en') {
-  my.i18n.msgs.base = my.i18n.msgs.lang.en.base;
-}
 
 if (goog.LOCALE == 'ru') {
   my.i18n.msgs.base = my.i18n.msgs.lang.ru.base;

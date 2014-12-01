@@ -6,13 +6,13 @@ goog.provide('my.i18n.msgs.lang.en.base');
 
 my.i18n.msgs.lang.en.base.serverError = function() {
   /**  @desc Server error */
-  var MSG_EN_SERVERERROR_0_0 = goog.getMsg('Server error');
+  var MSG_EN_SERVERERROR_0_0 = goog.getMsg('Ошибка сервера');
   return MSG_EN_SERVERERROR_0_0;
 };
 
 my.i18n.msgs.lang.en.base.test = function() {
   /**  @desc Тестовое описание */
-  var MSG_EN_TEST_0_1 = goog.getMsg('Test');
+  var MSG_EN_TEST_0_1 = goog.getMsg('Тест');
   return MSG_EN_TEST_0_1;
 };
 
@@ -28,8 +28,8 @@ my.i18n.msgs.lang.en.base.helloUser = function(options) {
 my.i18n.msgs.lang.en.base.quote = function() {
   /**  @desc quote */
   var MSG_EN_QUOTE_0_3 = goog.getMsg(
-    '"Pushkin\'s quote."' +
-    '  A. S. Pushkin'
+    '"Не тот поэт, кто рифмы плесть умеет."' +
+    '  А. С. Пушкин'
   );
   return MSG_EN_QUOTE_0_3;
 };
