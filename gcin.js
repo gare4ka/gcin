@@ -1,4 +1,5 @@
 var XRegExp = require('xregexp').XRegExp;
+var Message = require('./message');
 
 var SOURCE_REG_EXP = '<%\\s*@source\\s+(.+?)\\s*%>';
 var PATCH_REG_EXP = '<%\\s*@patch\\s+(.+?)\\s*%>';
@@ -40,25 +41,6 @@ var parse = function(data) {
     doc.id = doc.ns;
   }
 
-  doc.msgs = [];
-  XRegExp.forEach(data, new XRegExp(MSG_REG_EXP, 'm'), function(match, i) {
-    var msg = {
-      id: match.id,
-      type: match.type,
-      body: match.body.replace(/^\s+|\s+$/g, '')
-    };
-
-    var hasMean = !!match.mean && !!match.desc;
-    if (hasMean) {
-      msg.mean = match.mean;
-      msg.desc = match.desc;
-    } else if (match.mean) {
-      msg.desc = match.mean;
-    }
-
-    doc.msgs.push(msg);
-  }, this);
-
   // validation
   if (!doc.ns) {
     throw Error("File has no namespace");
@@ -70,22 +52,37 @@ var parse = function(data) {
     throw Error("File " + doc.ns + " has no source");
   }
 
+  doc.msgs = [];
+  XRegExp.forEach(data, new XRegExp(MSG_REG_EXP, 'm'), function(match, i) {
+    var body = match.body.replace(/^\s+|\s+$/g, '');
+    var mean = match.mean;
+    var desc = match.desc;
+    // no mean
+    if (mean && !desc) {
+      desc = mean;
+      mean = '';
+    }
+
+    var msg = new Message(doc.id, match.id, match.type, body);
+    msg.setMean(mean);
+    msg.setDesc(desc);
+
+    doc.msgs.push(msg);
+  }, this);
+
   return doc;
 };
 
 var extendTranslation = function(doc, poMap, opt_noTransLabel) {
   doc.msgs.forEach(function(msg) {
-    var id = (doc.id ? doc.id + ' ' : '') + msg.id;
-    if (!poMap[id]) {
-      return;
-    }
-    msg.translation = poMap[id].str;
+    var poMsg = poMap[msg.getUid()];
+    msg.setTranslation(poMsg ? poMsg.getTranslation() : '');
   });
 
   doc.msgs.forEach(function(msg) {
-    if (!msg.translation) {
-      msg.translation = opt_noTransLabel ? opt_noTransLabel : msg.body;
-      process.stdout.write('WARNING! Message ' + msg.id + ' (' + doc.ns + ') has no translation.\n');
+    if (!msg.getTranslation()) {
+      msg.setTranslation(opt_noTransLabel ? opt_noTransLabel : msg.body);
+      process.stdout.write('WARNING! No translation for: ' + msg.toConsoleString() + '\n');
     }
   });
 };

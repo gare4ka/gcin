@@ -1,4 +1,5 @@
 var XRegExp = require('xregexp').XRegExp;
+var Message = require('./message');
 var messageFormat = require('./messageformat');
 
 var create = function(doc, nsPrefix, lang, id) {
@@ -24,9 +25,6 @@ var create = function(doc, nsPrefix, lang, id) {
   doc.msgs.forEach(function(msg, pos) {
     var msgName = ["MSG", (lang || 'self').toUpperCase(), msg.id.toUpperCase(), id, pos].join('_');
 
-    // if lang is not defined create js with sourse language
-    var translation = lang ? msg.translation : msg.body;
-
     if (doc.patch) {
       if (!doc.docs[doc.patch]) {
         throw new Error('Can\'t find ' + doc.patch + ' for patching');
@@ -39,17 +37,9 @@ var create = function(doc, nsPrefix, lang, id) {
       }
     }
 
-    if (msg.type == 'msgf') {
-      translation = translation.replace(/\n\s*/g, '').replace(/\<%\s*@space\s*%\>/g, ' ');
-      try {
-        var mf = messageFormat(translation.replace(/\{\$(.+?)\}/g, 'REPLACEMENT'), lang || doc.source);
-      } catch(err) {
-        console.log('Can\'t parse ' + msg.id + ' in ' + doc.ns);
-        throw err;
-      }
-    } else {
-      translation.replace(/\<%\s*@space\s*%\>/g, ' ');
-    }
+
+    // if lang is not defined create js with sourse language
+    var translation = lang ? msg.getJsTranslation(lang) : msg.getJsBody(doc.source);
 
     var props = {};
     XRegExp.forEach(translation, /\{\$(.+?)\}/, function (match, i) {

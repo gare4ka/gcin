@@ -1,37 +1,14 @@
 var XRegExp = require('xregexp').XRegExp;
+var Message = require('./message');
 
 var create = function(docs) {
   docs = docs instanceof Array ? docs : [docs];
-  var ret = '';
-
-  docs.forEach(function(doc, pos) {
-    if (pos > 0) {
-      ret += '\n';
-    }
-    doc.msgs.forEach(function(msg, pos) {
-      if (pos > 0) {
-        ret += '\n';
-      }
-
-      ret += '#: ' + doc.ns + '\n';
-      if (msg.desc) {
-        ret += '#. ' + msg.desc + '\n';
-      }
-      if (msg.mean) {
-        ret += '#. ' + msg.mean + '\n';
-      }
-
-      ret += 'msgctxt "' + (msg.type == 'msgf' ? 'HAS FORMATTER, ' : '') + (doc.id ? doc.id + ' ' : '') + msg.id + '"\n';
-      if (msg.body.indexOf('\n') != -1) {
-        ret += 'msgid ""\n"' + msg.body.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n"\n"') + '"\n';
-      } else {
-        ret += 'msgid "' + msg.body.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"\n';
-      }
-      ret += 'msgstr ""\n';
-    });
-  });
-
-  return ret;
+  return docs.map(function(doc, pos) {
+    return doc.msgs.map(function(msg, pos) {
+      return '#: ' + doc.ns + '\n' +
+             msg.toPoString() + '\n';
+    }).join('\n');
+  }).join('\n');
 };
 
 var parse = function(data) {
@@ -54,16 +31,24 @@ var parse = function(data) {
   };
 
   XRegExp.forEach(data, new XRegExp(MSG_REG_EXP, 'm'), function(match, i) {
-    var msg = {
-      id: _formatMultiLineStr(match.id),
-      // gcinid: _formatMultiLineStr(match.gcinid),
-      ctx: (_formatMultiLineStr(match.ctx) || '').replace(/^HAS FORMATTER, /, ''),
-      str: _formatMultiLineStr(match.str)
-    };
+    var body = _formatMultiLineStr(match.id);
+    var ctx = (_formatMultiLineStr(match.ctx) || '');
+    var translation = _formatMultiLineStr(match.str);
+
+    if (!ctx) {
+      process.stdout.write('FILE INFO:\n' + translation + '\n');
+      return;
+    }
+
+    var ctxInfo = Message.getInfoByCtxt(ctx);
+    var msg = new Message(ctxInfo.docId, ctxInfo.id, ctxInfo.type, body);
+    if (translation) {
+      msg.setTranslation(translation);
+    }
 
     var fuzzy = match.comment && (FUZZY_REG_EXP.test(match.comment));
     if (fuzzy) {
-      process.stdout.write('Skipped (fuzzy): ' + msg.id + '\n');
+      process.stdout.write('Skipped (fuzzy): ' + msg.toConsoleString() + '\n');
       return;
     }
 
@@ -71,6 +56,14 @@ var parse = function(data) {
   }, this);
 
   return doc;
+};
+
+var getMap = function(doc) {
+  var map = {};
+  doc.msgs.forEach(function(msg) {
+    map[msg.getUid()] = msg;
+  });
+  return map;
 };
 
 var _formatMultiLineStr = function(data) {
@@ -84,19 +77,8 @@ var _formatMultiLineStr = function(data) {
     .replace(/\\\n/g, '\\n')
     .replace(/\\t/g, '\t')
     .replace(/\\\t/g, '\\t')
+    .replace(/\\\\/g, '\\')
     .replace(/\\\"/g, '"');
-};
-
-var getMap = function(doc) {
-  var map = {};
-  doc.msgs.forEach(function(msg) {
-    if (!msg.ctx) {
-      return;
-    }
-    map[msg.ctx] = msg;
-  });
-
-  return map;
 };
 
 module.exports = {
