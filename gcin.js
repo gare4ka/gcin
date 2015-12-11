@@ -73,7 +73,7 @@ var parse = function(data) {
   return doc;
 };
 
-var extendTranslation = function(doc, poMap, opt_noTransLabel) {
+var extendTranslation = function(doc, poMap, opt_stict, opt_noTransLabel) {
   doc.msgs.forEach(function(msg) {
     var poMsg = poMap[msg.getUid()];
     msg.setTranslation(poMsg ? poMsg.getTranslation() : '');
@@ -82,7 +82,13 @@ var extendTranslation = function(doc, poMap, opt_noTransLabel) {
   doc.msgs.forEach(function(msg) {
     if (!msg.getTranslation()) {
       msg.setTranslation(opt_noTransLabel ? opt_noTransLabel : msg.body);
-      process.stdout.write('WARNING! No translation for: ' + msg.toConsoleString() + '\n');
+      var str = 'WARNING! No translation for: ' + msg.toConsoleString() + '\n';
+      if (opt_stict) {
+        process.stderr.write(str);
+        process.exit(1);
+      } else {
+        process.stdout.write(str);
+      }
     }
   });
 };

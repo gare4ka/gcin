@@ -108,7 +108,7 @@ module.exports = function(options, callback) {
       var map = po.getMap(doc);
 
       files.forEach(function(file) {
-        gcin.extendTranslation(file.doc, map, options.notranslabel);
+        gcin.extendTranslation(file.doc, map, !!options.strict, options.notranslabel);
       });
 
       waiting++;
