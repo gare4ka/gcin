@@ -1,4 +1,4 @@
-var XRegExp = require('xregexp').XRegExp;
+var XRegExp = require('xregexp');
 var Message = require('./message');
 
 var SOURCE_REG_EXP = '<%\\s*@source\\s+(.+?)\\s*%>';

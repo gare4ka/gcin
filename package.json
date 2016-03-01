@@ -13,10 +13,10 @@
     "async": ">= 0.2.9",
     "mkdirp": ">= 0.3.4",
     "optimist": ">= 0.3.5",
-    "xregexp": ">= 2.0.0"
+    "xregexp": ">= 3.1.0"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 4.0.0"
   },
   "repository": "git://github.com/4u/gcin.git",
   "main": "index",
