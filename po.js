@@ -11,7 +11,7 @@ var create = function(docs) {
   }).join('\n');
 };
 
-var parse = function(data) {
+var parse = function(lang, data) {
   var _getMultiStrParam = function(param) {
     return '' +
       '(?!\\\\)(""\\n)?"' +
@@ -43,7 +43,7 @@ var parse = function(data) {
     var ctxInfo = Message.getInfoByCtxt(ctx);
     var msg = new Message(ctxInfo.docId, ctxInfo.id, ctxInfo.type, body);
     if (translation) {
-      msg.setTranslation(translation);
+      msg.setTranslation(lang, translation);
     }
 
     var fuzzy = match.comment && (FUZZY_REG_EXP.test(match.comment));

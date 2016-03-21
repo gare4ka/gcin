@@ -8,7 +8,7 @@ var Message = function(docId, id, type, body) {
   this.body = body || '';
   this.mean = '';
   this.desc = '';
-  this.translation = '';
+  this.translations = {};
 
   this._poMsgCtxt = '';
   this._poMsgId = '';
@@ -45,12 +45,12 @@ Message.prototype.getFunctionName = function() {
   return this.docId + '.' + this.id;
 };
 
-Message.prototype.getTranslation = function() {
-  return this.translation;
+Message.prototype.getTranslation = function(lang) {
+  return this.translations[lang] || '';
 };
 
-Message.prototype.setTranslation = function(translation) {
-  this.translation = translation || '';
+Message.prototype.setTranslation = function(lang, translation) {
+  this.translations[lang] = translation || '';
 };
 
 Message.prototype.setMean = function(mean) {
@@ -103,7 +103,7 @@ Message.prototype.getPoMsgId = function() {
 
 
 Message.prototype.getJsTranslation = function(lang) {
-  return this._getJsString(this.translation, lang);
+  return this._getJsString(this.getTranslation(lang), lang);
 };
 
 Message.prototype.getJsBody = function(lang) {
@@ -131,8 +131,6 @@ Message.prototype._getJsString = function(str, lang) {
   throw new Error('Undefined message type');
 };
 
-
-
 Message.prototype.toConsoleString = function() {
   var body = this.body || '';
   if (body.length > 20) {
@@ -144,7 +142,7 @@ Message.prototype.toConsoleString = function() {
   return this.getFunctionName() + body;
 };
 
-Message.prototype.toPoString = function() {
+Message.prototype.toPoString = function(lang) {
   var ret = [];
   if (this.desc) {
     ret.push('#. ' + this.desc);
@@ -155,7 +153,7 @@ Message.prototype.toPoString = function() {
 
   ret.push('msgctxt "' + this.getPoMsgCtxt() + '"');
   ret.push('msgid "' + this.getPoMsgId() + '"');
-  ret.push('msgstr "' + this.getTranslation() + '"');
+  ret.push('msgstr "' + this.getTranslation(lang) + '"');
   return ret.join('\n');
 };
 

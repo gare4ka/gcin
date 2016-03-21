@@ -104,11 +104,11 @@ module.exports = function(options, callback) {
     var langs = [];
     poArray.forEach(function(arg) {
       var data = new String(fs.readFileSync(arg.name));
-      var doc = po.parse(data);
+      var doc = po.parse(arg.lang, data);
       var map = po.getMap(doc);
 
       files.forEach(function(file) {
-        gcin.extendTranslation(file.doc, map, !!options.strict, options.notranslabel);
+        gcin.extendTranslation(arg.lang, file.doc, map, !!options.strict, options.notranslabel);
       });
 
       waiting++;
