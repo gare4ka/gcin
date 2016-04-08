@@ -42,6 +42,7 @@ var saveFile = function(name, data, callback) {
  *   output: string // Output directory
  *   lang: string // Output language
  *   nsprefix: string // namespace prefix
+ *   nowarnings: boolean // true for disable warnings
  * }
  */
 module.exports = function(options, callback) {
@@ -108,7 +109,8 @@ module.exports = function(options, callback) {
       var map = po.getMap(doc);
 
       files.forEach(function(file) {
-        gcin.extendTranslation(arg.lang, file.doc, map, !!options.strict, options.notranslabel);
+        gcin.extendTranslation(arg.lang, file.doc, map, !!options.strict,
+            options.notranslabel, options.nowarnings);
       });
 
       waiting++;
