@@ -2,7 +2,8 @@ var XRegExp = require('xregexp');
 var Message = require('./message');
 var messageFormat = require('./messageformat');
 
-var create = function(doc, nsPrefix, lang, id) {
+var create = function(doc, nsPrefix, lang, id, opt_fallbacks) {
+  var fallbacks = [lang].concat(opt_fallbacks || []);
   var ret = '';
 
   var ns = _getLngNs(nsPrefix, lang, doc, doc.ns);
@@ -38,8 +39,14 @@ var create = function(doc, nsPrefix, lang, id) {
     }
 
 
-    // if lang is not defined create js with sourse language
-    var translation = lang ? msg.getJsTranslation(lang) : msg.getJsBody(doc.source);
+    var translation = msg.getJsBody(doc.source);
+    fallbacks.some(function(l) {
+      var hasTranslation = msg.getTranslation(l);
+      if (hasTranslation) {
+        translation = msg.getJsTranslation(l);
+      }
+      return hasTranslation;
+    });
 
     var props = {};
     XRegExp.forEach(translation, /\{\$(.+?)\}/, function (match, i) {

@@ -42,10 +42,13 @@ var saveFile = function(name, data, callback) {
  *   output: string // Output directory
  *   lang: string // Output language
  *   nsprefix: string // namespace prefix
+ *   fallbacks: {Object.<string, Array.<string>>} // ex: {'de': ['en', 'ru']}
  *   nowarnings: Array.<string> // true for disable warnings
  * }
  */
 module.exports = function(options, callback) {
+  options.fallbacks = options.fallbacks || {};
+
   var poArray = options.po instanceof Array ? options.po : [options.po];
   readFilesByExt(options.dir, 'gcin', function(files) {
     var waiting = 0;
@@ -71,7 +74,7 @@ module.exports = function(options, callback) {
         var file = fileAndPos[0];
         var l = (lang || file.doc.source);
         var pos = fileAndPos[1];
-        var jsData = js.create(file.doc, options.nsprefix, lang, pos);
+        var jsData = js.create(file.doc, options.nsprefix, lang, pos, options.fallbacks[lang]);
         var name = path.resolve(options.output, 'lang',
             lang || file.doc.source, path.relative(options.dir, file.name));
 

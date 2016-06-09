@@ -81,7 +81,6 @@ var extendTranslation = function(lang, doc, poMap, opt_stict, opt_noTransLabel, 
 
   doc.msgs.forEach(function(msg) {
     if (!msg.getTranslation(lang)) {
-      msg.setTranslation(lang, opt_noTransLabel ? opt_noTransLabel : msg.body);
       var str = 'No "' + lang + '" translation for: ' + msg.toConsoleString() + '\n';
       if (opt_stict) {
         process.stderr.write(str);
