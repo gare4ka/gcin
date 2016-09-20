@@ -122,7 +122,8 @@ Message.prototype._getJsString = function(str, lang) {
     try {
       var mf = messageFormat(str.replace(/\{\$(.+?)\}/g, 'REPLACEMENT'), lang);
     } catch(err) {
-      console.log('Failed message format parsing of ' + this.toConsoleString());
+      console.log('Failed message format parsing \n' +
+          'id: ' + this.toConsoleString() + '\n' + 'lang: ' + lang);
       throw err;
     }
     return str;
