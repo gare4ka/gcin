@@ -106,34 +106,42 @@ module.exports = function(options, callback) {
     waiting++; // last step
 
     var langs = [];
-    const failed = {};
+    const noTrans = {};
     poArray.forEach(function(arg) {
+      const {lang} = arg;
+
       var data = new String(fs.readFileSync(arg.name));
-      var doc = po.parse(arg.lang, data);
+      var doc = po.parse(lang, data);
       var map = po.getMap(doc);
 
-      files.forEach(function(file) {
-        var noWarns = options.nowarnings && options.nowarnings.indexOf(arg.lang) !== -1;
-        const fail = gcin.extendTranslation(arg.lang, file.doc, map, options.strict,
-            options.notranslabel, noWarns);
-        if (fail) {
-          failed[arg.lang] = true;
+      if (!noTrans[lang]) {
+        noTrans[lang] = {
+          errors: [],
+          warnings: []
         }
+      }
+
+      files.forEach((noTrans, file) => {
+        var noWarns = options.nowarnings && options.nowarnings.indexOf(lang) !== -1;
+        const {errors, warnings} = gcin.extendTranslation(
+            lang, file.doc, map, options.strict, options.notranslabel, noWarns);
+        noTrans[lang].errors.push(...errors);
+        noTrans[lang].warnings.push(...warnings);
       });
 
-      if (!!failed[arg.lang]) {
+      if (noTrans[lang].errors.length > 0) {
         return;
       }
 
       waiting++;
-      createLang(arg.lang, complete);
-      langs.push(arg.lang);
+      createLang(lang, complete);
+      langs.push(lang);
     });
 
-    if (Object.keys(failed).length > 0) {
-      process.stderr.write(`No translations for strict langs: 
-          ${Object.keys(failed).join(', ')}`);
-      process.exit(1);
+    const hasError = Object.keys(noTrans).some(key => key.errors.length > 0);
+    if (hasError) {
+      callback(noTrans);
+      return;
     }
 
     if (options.self && files.length > 0) {

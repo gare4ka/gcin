@@ -80,19 +80,19 @@ var extendTranslation = function(lang, doc, poMap, strictLangs = [], opt_noTrans
   });
 
   const strict = strictLangs.indexOf(lang) !== -1;
-  let noTrans = false;
-  doc.msgs.forEach(function(msg) {
+  return doc.msgs.reduce((noTrans, msg) => {
     if (!msg.getTranslation(lang)) {
       var str = 'No "' + lang + '" translation for: ' + msg.toConsoleString() + '\n';
       if (strict) {
-        process.stdout.write(str);
-        noTrans = true;
+        process.stdout.write(`ERROR: ${str}`);
+        noTrans.errors.push(str);
       } else if (!opt_noWarnings) {
         process.stdout.write('WARNING! ' + str);
+        noTrans.warnings.push(str);
       }
     }
-  });
-  return noTrans;
+    return noTrans;
+  }, {errors: [], warnings: []});
 };
 
 module.exports = {
