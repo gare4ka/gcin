@@ -73,23 +73,26 @@ var parse = function(data) {
   return doc;
 };
 
-var extendTranslation = function(lang, doc, poMap, opt_stict, opt_noTransLabel, opt_noWarnings) {
+var extendTranslation = function(lang, doc, poMap, strictLangs = [], opt_noTransLabel, opt_noWarnings) {
   doc.msgs.forEach(function(msg) {
     var poMsg = poMap[msg.getUid()];
     msg.setTranslation(lang, poMsg ? poMsg.getTranslation(lang) : '');
   });
 
+  const strict = strictLangs.indexOf(lang) !== -1;
+  let noTrans = false;
   doc.msgs.forEach(function(msg) {
     if (!msg.getTranslation(lang)) {
       var str = 'No "' + lang + '" translation for: ' + msg.toConsoleString() + '\n';
-      if (opt_stict) {
-        process.stderr.write(str);
-        process.exit(1);
+      if (strict) {
+        process.stdout.write(str);
+        noTrans = true;
       } else if (!opt_noWarnings) {
         process.stdout.write('WARNING! ' + str);
       }
     }
   });
+  return noTrans;
 };
 
 module.exports = {

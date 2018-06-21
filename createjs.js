@@ -106,6 +106,7 @@ module.exports = function(options, callback) {
     waiting++; // last step
 
     var langs = [];
+    const failed = {};
     poArray.forEach(function(arg) {
       var data = new String(fs.readFileSync(arg.name));
       var doc = po.parse(arg.lang, data);
@@ -113,14 +114,27 @@ module.exports = function(options, callback) {
 
       files.forEach(function(file) {
         var noWarns = options.nowarnings && options.nowarnings.indexOf(arg.lang) !== -1;
-        gcin.extendTranslation(arg.lang, file.doc, map, !!options.strict,
+        const fail = gcin.extendTranslation(arg.lang, file.doc, map, options.strict,
             options.notranslabel, noWarns);
+        if (fail) {
+          failed[arg.lang] = true;
+        }
       });
+
+      if (!!failed[arg.lang]) {
+        return;
+      }
 
       waiting++;
       createLang(arg.lang, complete);
       langs.push(arg.lang);
     });
+
+    if (Object.keys(failed).length > 0) {
+      process.stderr.write(`No translations for strict langs: 
+          ${Object.keys(failed).join(', ')}`);
+      process.exit(1);
+    }
 
     if (options.self && files.length > 0) {
       createLang();
