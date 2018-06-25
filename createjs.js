@@ -140,7 +140,7 @@ module.exports = function(options, callback) {
 
     const hasError = Object.keys(noTrans).some(key => key.errors.length > 0);
     if (hasError) {
-      callback(noTrans);
+      callback({msgs: noTrans});
       return;
     }
 
