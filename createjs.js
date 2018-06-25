@@ -121,7 +121,7 @@ module.exports = function(options, callback) {
         }
       }
 
-      files.forEach((noTrans, file) => {
+      files.forEach(file => {
         var noWarns = options.nowarnings && options.nowarnings.indexOf(lang) !== -1;
         const {errors, warnings} = gcin.extendTranslation(
             lang, file.doc, map, options.strict, options.notranslabel, noWarns);
