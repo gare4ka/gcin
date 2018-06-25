@@ -138,7 +138,7 @@ module.exports = function(options, callback) {
       langs.push(lang);
     });
 
-    const hasError = Object.keys(noTrans).some(key => key.errors.length > 0);
+    const hasError = Object.keys(noTrans).some(key => noTrans[key].errors.length > 0);
     if (hasError) {
       callback({msgs: noTrans});
       return;
